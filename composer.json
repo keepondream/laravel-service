@@ -1,0 +1,18 @@
+{
+    "name": "keepondream/laravel-service",
+    "description": "一个laravel服务层代码生成包",
+    "require": {
+        "keepondream/service": "^1.1",
+        "illuminate/console": "^6.6",
+        "illuminate/support": "^6.6",
+        "illuminate/filesystem": "^6.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "wangsx",
+            "email": "402314889@qq.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
