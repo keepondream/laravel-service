@@ -1,0 +1,19 @@
+<?php
+/**
+ * Description: $className service
+ * Author: WangSx
+ * DateTime: $date $time
+ */
+namespace $nameSpace;
+use Keepondream\serviceSingleInstance\Service as BaseService;
+
+/**
+ * Author: WangSx
+ * DateTime: $date $time
+ * Class $className
+ * @package $nameSpace
+ */
+class $className extends BaseService
+{
+
+}

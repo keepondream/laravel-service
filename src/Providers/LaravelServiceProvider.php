@@ -9,6 +9,7 @@ namespace Keepondream\LaravelService\Providers;
 
 
 use Illuminate\Support\ServiceProvider;
+use Keepondream\LaravelService\Console\MakeServices;
 
 class LaravelServiceProvider extends ServiceProvider
 {
@@ -19,23 +20,20 @@ class LaravelServiceProvider extends ServiceProvider
 
     public function register()
     {
+        # 注册脚本
         $this->registerKeepCommand();
     }
 
+    /**
+     * Author: WangSx
+     * DateTime: 2019-11-28 13:18
+     */
     protected function registerKeepCommand()
     {
-        $this->app->singleton('luffyzhao.make.excels', function ($app) {
-            return new MakeExcels($app['files']);
+        $this->app->singleton('keepondream.make.services', function ($app) {
+            return new MakeServices($app['files']);
         });
-        $this->commands('luffyzhao.make.excels');
-        $this->app->singleton('luffyzhao.make.searchs', function ($app) {
-            return new MakeSearchs($app['files']);
-        });
-        $this->commands('luffyzhao.make.searchs');
-        $this->app->singleton('luffyzhao.make.repositories', function ($app) {
-            return new MakeRepositories($app['files']);
-        });
-        $this->commands('luffyzhao.make.repositories');
+        $this->commands('keepondream.make.services');
     }
 
 }
