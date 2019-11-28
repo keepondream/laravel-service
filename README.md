@@ -9,3 +9,7 @@
   Keepondream\LaravelService\Providers\LaravelServiceProvider::class
  ]
 ```
+- 使用composer install
+```
+composer require keepondream/laravel-service
+```
