@@ -2,12 +2,14 @@
     "name": "keepondream/laravel-service",
     "description": "一个laravel服务层代码生成包",
     "require": {
-        "keepondream/service": "^1.1",
-        "illuminate/console": "^6.6",
-        "illuminate/support": "^6.6",
-        "illuminate/filesystem": "^6.6"
+        "keepondream/service": "^1.1"
     },
     "license": "MIT",
+    "require-dev": {
+        "illuminate/console": ">=5.7",
+        "illuminate/support": ">=5.7",
+        "illuminate/filesystem": ">=5.7"
+    },
     "authors": [
         {
             "name": "wangsx",
