@@ -12,4 +12,5 @@
 - 使用composer install
 ```
 composer require keepondream/laravel-service
+
 ```
