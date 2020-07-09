@@ -80,7 +80,7 @@ class MakeServices extends GeneratorCommand
         $path = self::SERVICE_PATH;
         if ($name_count > 1) {
             for ($i = 0; $i < $name_count; $i++) {
-                $path .= DIRECTORY_SEPARATOR . ucfirst($name_count[$i]);
+                $path .= DIRECTORY_SEPARATOR . ucfirst($name_arr[$i]);
             }
         }
         $fullModelName = ucfirst(end($name_arr));
