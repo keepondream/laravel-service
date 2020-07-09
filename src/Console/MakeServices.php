@@ -67,23 +67,35 @@ class MakeServices extends GeneratorCommand
      */
     public function handle()
     {
-        $fullModelName = $this->argument('modelName');
+        $fullModelName = strtolower($this->argument('modelName'));
 
-        $fullModelName = ucfirst($fullModelName);
-
-        if (!$this->files->isDirectory(self::SERVICE_PATH)) {
-            $this->files->makeDirectory(self::SERVICE_PATH, 0755, true);
+        if (empty($fullModelName)) {
+            $this->error("you can : php artisan make:service User/FirstUser ; \n will make FirstUserService.php Success");
+            return true;
         }
+
+        $name_arr = explode('/', $fullModelName);
+        $name_count = count($name_arr);
+
+        $path = self::SERVICE_PATH;
+        if ($name_count > 1) {
+            for ($i = 0; $i < $name_count; $i++) {
+                $path .= DIRECTORY_SEPARATOR . ucfirst($name_count[$i]);
+            }
+        }
+        $fullModelName = ucfirst(end($name_arr));
+
+        if (!$this->files->isDirectory($path)) {
+            $this->files->makeDirectory($path, 0755, true);
+        }
+
         $this->files = new Filesystem();
         $this->composer = new Composer($this->files);
         $this->date = date('Y-m-d');
         $this->time = date('H:i');
 
-        $path = self::SERVICE_PATH . DIRECTORY_SEPARATOR . $fullModelName . 'Service.php';
-
-
         $stub = $this->files->get($this->getStub());
-        $nameSpace = str_replace('/', '\\', self::SERVICE_PATH);
+        $nameSpace = str_replace('/', '\\', $path);
         $templateData = [
             'date' => $this->date,
             'time' => $this->time,
@@ -91,6 +103,7 @@ class MakeServices extends GeneratorCommand
             'nameSpace' => $nameSpace,
         ];
         $renderStub = $this->getRenderStub($templateData, $stub);
+        $path .= DIRECTORY_SEPARATOR . $fullModelName . 'Service.php';
         if (!$this->files->exists($path)) {
             $this->files->put($path, $renderStub);
             $filename = substr(strrchr($path, "/"), 1);
